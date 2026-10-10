@@ -14,5 +14,12 @@ public class Main {
         System.out.println("Minimale Zahl: " + aufg2.min(Zahlen));
         System.out.println("Maximale Summe von n-1 Zahlen : " + aufg2.maxSum(Zahlen));
         System.out.println("Minimale Summe von n-1 Zahlen: " + aufg2.minSum(Zahlen));
+        Elektronik_shop aufg4 = new Elektronik_shop();
+        aufg4.Tastatur = new int[] {40,50,60};
+        aufg4.USB = new int[] {8,12};
+        System.out.println("Max aus [40,50,60] und [8,12] und b=60: " + aufg4.max_ausgeben(60));
+        aufg4.Tastatur = new int[]{60};
+        aufg4.USB = new int[]{8,12};
+        System.out.println("Max aus [60] und [8,12] und b=60: " + aufg4.max_ausgeben(60));
     }
 }
