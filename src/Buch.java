@@ -22,4 +22,5 @@ public class Buch {
     public int getAnzahlDerSeiten() {
         return AnzahlDerSeiten;
     }
+
 }
