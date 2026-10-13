@@ -56,5 +56,29 @@ public class Bibliothek {
             }
         }
     }
-
+    public void zweiBucherImBuget(int buget){
+        Buch buch1;
+        Buch buch2;
+        Buch currentMax1 = null;
+        Buch currentMax2 = null;
+        for(int i = 0; i < this.Bucher.size(); i++){
+            buch1 = this.Bucher.get(i);
+            for (int j= i; j<this.Bucher.size();j++){
+                buch2 = this.Bucher.get(j);
+                if (buch1.getPreis() + buch2.getPreis() > buget) continue;
+                if(buch1.getPreis() + buch2.getPreis() < buget && buch1.getPreis() + buch2.getPreis() < currentMax1.getPreis() + currentMax2.getPreis()){
+                    currentMax1 = buch1;
+                    currentMax2 = buch2;
+                }
+                if (buch1.getPreis() + buch2.getPreis()== currentMax1.getPreis()+currentMax2.getPreis()){
+                    if (buch1.getAnzahlDerSeiten() + buch2.getAnzahlDerSeiten() > currentMax1.getAnzahlDerSeiten() + currentMax2.getAnzahlDerSeiten()){
+                        currentMax1 = buch1;
+                        currentMax2 = buch2;
+                    }
+                }
+            }
+        }
+        System.out.println(currentMax1.getTitel() + " + " + currentMax2.getTitel());
+        System.out.println("Gesamtpreis: " + (currentMax1.getPreis() + currentMax2.getPreis()) + " Euro");
+    }
 }
