@@ -11,34 +11,38 @@ public class Bibliothek {
         this.Bucher.add(buch);
     }
 
-    public void getFromAuthor(String author){
+    public ArrayList getFromAuthor(String author){
+        ArrayList<Buch> result = new ArrayList<Buch>(1);
         boolean isFound = false;
         for (Buch buch : this.Bucher){
-            if (buch.getAutor() == author){
+            if (buch.getAutor().equals(author)){
                 isFound = true;
-                System.out.println(buch.getTitel());
+                result.add(buch);
             }
         }
         if (!isFound){
-            System.out.println();
+            return null;
         }
+        return result;
     }
-    public void averagePages(){
+    public double averagePages(){
         double totalPages = 0;
         for (Buch buch : this.Bucher){
-            totalPages+=buch.getAnzahlDerSeiten();
+            totalPages+=buch.getAnzahlSeiten();
         }
-        System.out.printf("%.2f%n",totalPages/this.Bucher.size());
+        return totalPages/this.Bucher.size();
     }
 
-    public void bucherImBuget(int buget){
+    public ArrayList<Buch> bucherImBuget(int buget){
+        ArrayList<Buch> result = new ArrayList<Buch>(1);
         for (Buch buch : this.Bucher){
             if (buch.getPreis()<=buget){
-                System.out.println(buch.getTitel());
+                result.add(buch);
             }
         }
+        return result;
     }
-    public void teuerstesBuch(){
+    public Buch teuerstesBuch(){
         int maxPreis = 0;
         Buch teuerstesBuch = null;
         for (Buch buch : this.Bucher){
@@ -47,16 +51,19 @@ public class Bibliothek {
                 teuerstesBuch = buch;
             }
         }
-        System.out.println(teuerstesBuch.getTitel()+"("+teuerstesBuch.getPreis()+" Euro)");
+        return teuerstesBuch;
     }
-    public void bucherMindestSeitenAnzahl(int anzahl){
+    public ArrayList<Buch> bucherMindestSeitenAnzahl(int anzahl){
+        ArrayList<Buch> result = new ArrayList<Buch>(1);
         for (Buch buch : this.Bucher){
-            if (buch.getAnzahlDerSeiten()>=anzahl){
-                System.out.println(buch.getTitel());
+            if (buch.getAnzahlSeiten()>=anzahl){
+                result.add(buch);
             }
         }
+        return result;
     }
-    public void zweiBucherImBuget(int buget){
+    public ArrayList<Buch> zweiBucherImBuget(int buget){
+        ArrayList<Buch> result = new ArrayList<Buch>(2);
         Buch currentMax1 = null;
         Buch currentMax2 = null;
         int currentMaxPrice = -1;
@@ -67,7 +74,7 @@ public class Bibliothek {
             for (int j = i + 1; j < this.Bucher.size(); j++){
                 Buch buch2 = this.Bucher.get(j);
                 int totalPrice = buch1.getPreis() + buch2.getPreis();
-                int totalPages = buch1.getAnzahlDerSeiten() + buch2.getAnzahlDerSeiten();
+                int totalPages = buch1.getAnzahlSeiten() + buch2.getAnzahlSeiten();
 
                 if (totalPrice <= buget
                         && (totalPrice > currentMaxPrice
@@ -81,11 +88,11 @@ public class Bibliothek {
         }
 
         if (currentMax1 == null) {
-            System.out.println();
-            return;
+            return null;
         }
 
-        System.out.println(currentMax1.getTitel() + " + " + currentMax2.getTitel());
-        System.out.println("Gesamtpreis: " + currentMaxPrice + " Euro");
+        result.add(currentMax1);
+        result.add(currentMax2);
+        return result;
     }
 }

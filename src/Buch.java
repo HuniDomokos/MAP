@@ -1,26 +1,34 @@
 public class Buch {
-    private String Titel;
-    private String Autor;
-    private int Preis;
-    private int AnzahlDerSeiten;
+    private final String titel;
+    private final String autor;
+    private final int preis;
+    private final int anzahlSeiten;
 
-    public Buch(String Titel, String Autor, int Preis, int AnzahlDerSeiten){
-        this.Titel = Titel;
-        this.Autor = Autor;
-        this.Preis = Preis;
-        this.AnzahlDerSeiten = AnzahlDerSeiten;
+    public Buch(String titel, String autor, int preis, int anzahlSeiten) {
+        this.titel = titel;
+        this.autor = autor;
+        this.preis = preis;
+        this.anzahlSeiten = anzahlSeiten;
     }
+
     public String getTitel() {
-        return Titel;
-    }
-    public String getAutor() {
-        return Autor;
-    }
-    public int getPreis() {
-        return Preis;
-    }
-    public int getAnzahlDerSeiten() {
-        return AnzahlDerSeiten;
+        return titel;
     }
 
+    public String getAutor() {
+        return autor;
+    }
+
+    public int getPreis() {
+        return preis;
+    }
+
+    public int getAnzahlSeiten() {
+        return anzahlSeiten;
+    }
+
+    @Override
+    public String toString() {
+        return titel + "(" + preis + " Euro)";
+    }
 }
